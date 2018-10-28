@@ -24,12 +24,18 @@ public class Generator {
 		
 		
 		System.out.println(Arrays.deepToString(map));
-		
+	
+		System.out.println("\nStar indicates your current position.");
 
 		for (i = 0; i< 3; i++) {
 			System.out.println();
 			for (j = 0; j< 3; j++) {
-				System.out.print(map[i][j] + "\t");
+				if(i == 0 && j == 0) {
+					System.out.print(map[i][j] + "*\t");
+				} else {
+					System.out.print(map[i][j] + "\t");
+				}
+				
 			}
 		}
 		
@@ -52,22 +58,22 @@ public class Generator {
 		int w = 0, z = 0;
 		int count2 = 0;
 		while (true) {
-			System.out.println("\nPlease Enter the direction you want to move(use lower case WASD for directions: ");
+			System.out.println("\nPlease Enter the direction you want to move(use lower case WASD for directions): ");
 			s = scan.nextLine();
 			if(i == 0 && s.equals("w")) {
-				System.out.println("you can't move up");
+				System.err.println("you can't move up");
 				continue;
 			} 
 			if(j == 2 && s.equals("d")) {
-				System.out.println("you can't move right");
+				System.err.println("you can't move right");
 				continue;
 			} 
 			if(j == 0 && s.equals("a")) {
-				System.out.println("you can't move left");
+				System.err.println("you can't move left");
 				continue;
 			} 
 			if(i == 2 && s.equals("s")) {
-				System.out.println("you can't move down");
+				System.err.println("you can't move down");
 				continue;
 			} 
 			
@@ -77,25 +83,29 @@ public class Generator {
 				i--;
 				count2++;
 			} 
-			if (s.equals("s")&& map[i+1][j] !=0) {
+			else if(s.equals("s")&& map[i+1][j] !=0) {
 				
 				map[i][j]--;
 				i++;
 				count2++;
 			} 
-			if (s.equals("a")&& map[i][j-1] !=0) {
+			else if (s.equals("a") && map[i][j-1] !=0) {
 				
 				map[i][j]--;
 				j--;
 				count2++;
 			} 
-			if (s.equals("d")&& map[i][j+1] !=0) {
-				
+			else if (s.equals("d")&& map[i][j+1] !=0) {
 				map[i][j]--;
 				j++;
 				count2++;
+			} else {
+				System.err.println("You can't move to an empty slot!");
 			}
 			
+			
+			
+		
 			
 			for (w = 0; w < 3; w++) {
 				System.out.println();
